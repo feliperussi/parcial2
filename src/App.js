@@ -1,49 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
+import Bandas from './Bandas';
 import './App.css';
+import { useEffect, useState } from "react";
+import { Card, Col, Row, Container } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [connection, setConnection] = useState(false);
-
+  const [oldest, setOldest] = useState([]);
+  const [bands, setBands] = useState([]);
+  
+  // Function to get the band with the oldest foundation year
+  function getOldestBand(bands) {
+    let oldestBand = bands[0];
+    for (let i = 1; i < bands.length; i++) {
+      if (bands[i].foundation_year < oldestBand.foundation_year) {
+        oldestBand = bands[i];
+      }
+    }
+    return oldestBand;
+  }
+  
   useEffect(() => {
-    if (!navigator.onLine) {
-      // Something
-    }
-    else{
-      setConnection(true);
-    }
-  }, []);
+    fetch('https://gist.githubusercontent.com/josejbocanegra/806a4dcd1af61b4cc498d24c52e84320/raw/8711b7af9091d2831ed043563cad2a61311b0a5f/music-bands.json')
+      .then(response => response.json())
+      .then(data => {
+        setBands(data)
+        setOldest(getOldestBand(data));   
+      });
+      
+  }
+  , []);
 
-  if (!connection) {
-    return (
-      <div>
-        <h1><FormattedMessage id="ConnectionLost" /></h1>
-        <p><FormattedMessage id="ConnectionLostMessage"/></p>
-      </div>
-    );
-  }
-  else {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1><FormattedMessage id="MusicalBands" /></h1>
+      <Container>
+        <Row>
+          <Col>
+            <Bandas bands={bands} />
+          </Col>
+        </Row>
+      </Container>
+    <div>
+      <p> <FormattedMessage id="MessageOldest" /> {oldest.name} <FormattedMessage id="with" /> {2022 - oldest.foundation_year} <FormattedMessage id="years" /></p>
+    </div>
+    </div>
+  );
 }
 
 export default App;

@@ -1,4 +1,10 @@
 {
-    "ConnectionLost": "Connection lost",
-    "ConnectionLostMessage": "Please check your internet connection"
+    "MusicalBands": "Musical Bands",
+    "Name": "Name",
+    "Genre": "Genre",
+    "Country": "Country",
+    "FoundationalYear": "Foundational Year",
+    "MessageOldest": "The oldest band is",
+    "with": "with",
+    "years": "years."
 }

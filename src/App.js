@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div>
-      <h1><FormattedMessage id="MusicalBands" /></h1>
+      <h1 className='Title'><FormattedMessage id="MusicalBands" /></h1>
       <Container>
         <Row>
           <Col>

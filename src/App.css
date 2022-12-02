@@ -36,7 +36,7 @@
     transform: rotate(360deg);
   }
 }
-/* Background of the title blue vertically centered*/
+
 .Title {
   font-size: 2rem;
   text-align: center;
@@ -44,3 +44,6 @@
   width: auto;
   height: 5rem;
 }
+
+
+

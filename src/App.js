@@ -2,7 +2,7 @@ import React from 'react';
 import Bandas from './Bandas';
 import './App.css';
 import { useEffect, useState } from "react";
-import { Card, Col, Row, Container } from 'react-bootstrap';
+import { Img, Col, Row, Container } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -34,7 +34,11 @@ function App() {
 
   return (
     <div>
-      <h1 className='Title'><FormattedMessage id="MusicalBands" /></h1>
+      {/* sad */}
+      <div className="banner">
+        <div className="logo-main"><img src="logo.png" alt="logo" /></div>
+        <h1 className='Title'><FormattedMessage id="MusicalBands" /></h1>
+      </div>
       <Container>
         <Row>
           <Col>

@@ -3,7 +3,7 @@ import { Card, Col, Row, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function BandasDetail(band) {
-    // Verify that the band is not null
+
     if (band.length === 0) {
         return null;
     }
